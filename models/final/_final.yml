@@ -1,0 +1,210 @@
+version: 2
+
+models:
+  - name: dim_dates
+    description: ""
+    columns:
+      - name: date_day
+        tests:
+          - unique
+          - not_null
+        data_type: date
+        description: ""
+
+      - name: prior_date_day
+        data_type: date
+        description: ""
+
+      - name: next_date_day
+        data_type: date
+        description: ""
+
+      - name: prior_year_date_day
+        data_type: date
+        description: ""
+
+      - name: prior_year_over_year_date_day
+        data_type: date
+        description: ""
+
+      - name: day_of_week
+        data_type: int64
+        description: ""
+
+      - name: day_of_week_iso
+        data_type: int64
+        description: ""
+
+      - name: day_of_week_name
+        data_type: string
+        description: ""
+
+      - name: day_of_week_name_short
+        data_type: string
+        description: ""
+
+      - name: day_of_month
+        data_type: int64
+        description: ""
+
+      - name: day_of_year
+        data_type: int64
+        description: ""
+
+      - name: week_start_date
+        data_type: date
+        description: ""
+
+      - name: week_end_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_week_start_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_week_end_date
+        data_type: date
+        description: ""
+
+      - name: week_of_year
+        data_type: int64
+        description: ""
+
+      - name: iso_week_start_date
+        data_type: date
+        description: ""
+
+      - name: iso_week_end_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_iso_week_start_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_iso_week_end_date
+        data_type: date
+        description: ""
+
+      - name: iso_week_of_year
+        data_type: int64
+        description: ""
+
+      - name: prior_year_week_of_year
+        data_type: int64
+        description: ""
+
+      - name: prior_year_iso_week_of_year
+        data_type: int64
+        description: ""
+
+      - name: month_of_year
+        data_type: int64
+        description: ""
+
+      - name: month_name
+        data_type: string
+        description: ""
+
+      - name: month_name_short
+        data_type: string
+        description: ""
+
+      - name: month_start_date
+        data_type: date
+        description: ""
+
+      - name: month_end_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_month_start_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_month_end_date
+        data_type: date
+        description: ""
+
+      - name: quarter_of_year
+        data_type: int64
+        description: ""
+
+      - name: quarter_start_date
+        data_type: date
+        description: ""
+
+      - name: quarter_end_date
+        data_type: date
+        description: ""
+
+      - name: year_number
+        data_type: int64
+        description: ""
+
+      - name: year_start_date
+        data_type: date
+        description: ""
+
+      - name: year_end_date
+        data_type: date
+        description: ""
+
+  - name: dim_organizations
+    description: ""
+    columns:
+      - name: organization_sk
+        tests:
+          - unique
+          - not_null
+        data_type: string
+        description: ""
+
+      - name: source_organization_id
+        data_type: int64
+        description: ""
+
+      - name: legal_entity_country_code
+        data_type: int64
+        description: ""
+
+      - name: total_active_contracts
+        data_type: int64
+        description: ""
+
+      - name: is_inactive
+        data_type: boolean
+        description: ""
+
+      - name: created_datetime
+        data_type: timestamp
+        description: ""
+
+  - name: fct_daily_account_balances
+    description: ""
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - organization_sk
+            - snapshot_date
+    columns:
+      - name: organization_sk
+        tests:
+          - not_null
+        data_type: string
+        description: ""
+
+      - name: snapshot_date
+        tests:
+          - not_null
+        data_type: date
+        description: ""
+
+      - name: partition_date
+        data_type: date
+        description: ""
+
+      - name: daily_account_amount
+        data_type: float64
+        description: ""
