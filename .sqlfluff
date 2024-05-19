@@ -1,0 +1,10 @@
+[sqlfluff]
+templater = dbt
+sql_file_exts = .sql,.sql.j2,.dml,.ddl
+dialect = snowflake
+
+[sqlfluff:templater:dbt]
+target = dev
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = True
