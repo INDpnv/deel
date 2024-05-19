@@ -1,0 +1,20 @@
+name: 'deel'
+version: '1.0.0'
+config-version: 2
+
+profile: 'deel'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+models:
+  deel:
+    final:
+      # materialize all models in final folder as tables
+      +materialized: table

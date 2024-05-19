@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: dbt_deel
+    database: deel-take-home
+    schema: dbt_deel
+    tables:
+      - name: invoices
+      - name: organizations
